@@ -1,0 +1,28 @@
+{
+    "model": "opusplan",
+    "permissions": {
+        "allow": [
+            "Bash(npm run *)",
+            "Bash(git status)",
+            "Bash(git diff)",
+            "Bash(git add *)",
+            "Bash(git commit *)",
+            "Read(**)",
+            "Write(src/**)",
+            "Write(tests/**)"
+        ],
+        "ask": [
+            "Bash(git push:*)",
+            "Bash(npm install *)",
+            "Write(package.json)"
+        ],
+        "deny": [
+            "Read(./.env*)",
+            "Read(./secrets/**)",
+            "Read(./**/credentials*)",
+            "Bash(rm -rf:*)",
+            "Bash(curl:*)",
+            "Bash(wget:*)"
+        ]
+    }
+}

@@ -10,9 +10,8 @@
  * @returns {boolean}
  */
 function validateEmail(email) {
-  if (!email || typeof email !== 'string') return false;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email.trim());
+  return typeof email === 'string' && emailRegex.test(email.trim());
 }
 
 /**
@@ -23,8 +22,19 @@ function validateEmail(email) {
  * @returns {boolean}
  */
 function validatePassword(password) {
-  if (!password || typeof password !== 'string') return false;
-  return password.length >= 8;
+  return typeof password === 'string' && password.length >= 8;
+}
+
+/**
+ * Validates a phone number, accepting an optional leading "+" and
+ * 7-15 digits with spaces, hyphens, or parentheses as separators.
+ *
+ * @param {string} phone
+ * @returns {boolean}
+ */
+function validatePhoneNumber(phone) {
+  const phoneRegex = /^\+?[0-9]{7,15}$/;
+  return typeof phone === 'string' && phoneRegex.test(phone.trim().replace(/[\s\-()]/g, ''));
 }
 
 /**
@@ -34,9 +44,8 @@ function validatePassword(password) {
  * @returns {boolean}
  */
 function validateUUID(id) {
-  if (!id || typeof id !== 'string') return false;
   const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-  return uuidRegex.test(id);
+  return typeof id === 'string' && uuidRegex.test(id);
 }
 
 /**
@@ -46,13 +55,13 @@ function validateUUID(id) {
  * @returns {string}
  */
 function sanitizeString(input) {
-  if (!input || typeof input !== 'string') return '';
-  return input.trim().replace(/[\x00-\x1F\x7F]/g, '');
+  return typeof input === 'string' ? input.trim().replace(/[\x00-\x1F\x7F]/g, '') : '';
 }
 
 module.exports = {
   validateEmail,
   validatePassword,
+  validatePhoneNumber,
   validateUUID,
   sanitizeString
 };
