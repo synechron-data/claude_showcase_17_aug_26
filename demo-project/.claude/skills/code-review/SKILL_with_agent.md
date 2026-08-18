@@ -25,39 +25,21 @@ tags and severity ratings rather than re-deriving them. If the subagent finds
 no issues, state that explicitly rather than omitting the section.
 
 ## 2. Performance
-Delegate this dimension to the `performance-analyst` subagent using the Task tool.
-Pass it the code being reviewed and ask it to check for N+1 query patterns,
-synchronous operations that should be async, missing database indexes on
-frequently queried fields, and unbounded loops or memory-intensive operations.
-
-Incorporate its findings into the report below — preserve its severity ratings
-rather than re-deriving them. If the subagent finds no issues, state that
-explicitly rather than omitting the section.
+- Identify N+1 query patterns
+- Flag synchronous operations that should be async
+- Note missing database indexes on frequently queried fields
+- Highlight unbounded loops or memory-intensive operations
 
 ## 3. Test Coverage
-Delegate this dimension to the `test-coverage-analyst` subagent using the Task tool.
-Pass it the code being reviewed and ask it to list functions/branches with no
-test coverage, identify edge cases not covered by existing tests, and suggest
-2–3 specific test cases with example inputs and expected outputs.
-
-Incorporate its findings into the report below — preserve its severity ratings
-rather than re-deriving them. If the subagent finds no issues, state that
-explicitly rather than omitting the section.
+- List functions/branches with no test coverage
+- Identify edge cases not covered by existing tests
+- Suggest 2–3 specific test cases with example inputs and expected outputs
 
 ## 4. Code Quality
-Delegate this dimension to the `code-quality-analyst` subagent using the Task tool.
-Pass it the code being reviewed and ask it to flag violations of this project's
-CLAUDE.md standards, duplicated logic that should be extracted into shared
-utilities, missing or inconsistent error handling, and unclear naming, missing
-type annotations, or dead code.
-
-Incorporate its findings into the report below — preserve its severity ratings
-rather than re-deriving them. If the subagent finds no issues, state that
-explicitly rather than omitting the section.
-
-Run all four subagents (security-analyst, performance-analyst,
-test-coverage-analyst, code-quality-analyst) in parallel — they are independent
-and there is no need to wait for one before starting the next.
+- If a CLAUDE.md is present in the project, flag violations of its standards
+- Identify duplicated logic that should be extracted into shared utilities
+- Note missing or inconsistent error handling
+- Flag unclear naming, missing type annotations (if typed language), or dead code
 
 ---
 
