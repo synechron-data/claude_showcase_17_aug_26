@@ -1,1 +1,2 @@
 - [Demo project planted bugs & token-type gotcha](demo-project-planted-bugs.md) — repo has intentional bugs; lint-past-parse-errors technique; refresh tokens are UUIDs not JWTs.
+- [Duplicated expiry check logic](duplicated-expiry-check-logic.md) — authService.isTokenExpired reimplements (and inverts) JWT expiry instead of delegating to tokenHelper.js.

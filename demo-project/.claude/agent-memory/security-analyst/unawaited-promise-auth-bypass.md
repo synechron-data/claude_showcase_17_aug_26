@@ -1,6 +1,6 @@
 ---
 name: unawaited-promise-auth-bypass
-description: Auth-path bugs in this repo cluster as truthiness errors (unawaited bcrypt.compare, inverted expiry comparison); authService.js also has a hard SyntaxError so it cannot be required at runtime
+description: Auth-path bugs in this repo cluster as truthiness/type-confusion errors (unawaited bcrypt.compare, inverted expiry comparison, JWT expiry helper applied to an opaque UUID); authService.js also has a hard SyntaxError so it cannot be required at runtime
 metadata:
   type: feedback
 ---
@@ -17,6 +17,20 @@ Confirmed instances (2026-08-18 audit of `src/auth/authService.js`):
   "not expired", valid tokens report "expired".
 - `REFRESH_EXPIRES_IN` is read from env but never referenced; refresh tokens in the
   in-memory `Map` have no expiry enforcement at all.
+
+**Type confusion masks the inverted operator — don't "fix" it with a one-character change.**
+Re-confirmed 2026-08-18. `isTokenExpired()` is a *JWT* helper (`jwt.decode`), but its only
+caller passes an **opaque UUID** refresh token. `jwt.decode(uuid)` returns `null`, so the
+`!decoded` guard returns `true` before the comparison is ever reached. Runtime result: the
+refresh endpoint *always* throws `'Refresh token expired'` **and deletes the token on the way
+out**, so one refresh call permanently destroys a valid session (availability bug, and it
+silently hides the inverted `>`).
+
+Consequence for fixes: flipping `>` to `<=` changes nothing on the refresh path. The refresh
+token has no `exp` claim at all — expiry must be derived from the `createdAt` already stored
+in the `refreshTokenStore` map entry, compared against `REFRESH_EXPIRES_IN`. Verify any
+proposed patch against both call paths (JWT access token vs UUID refresh token) before
+accepting it.
 
 **Why:** These read as correct on a skim — the function names, JSDoc, and control flow all
 describe the right behaviour, and the bug is a single missing keyword or flipped operator.
