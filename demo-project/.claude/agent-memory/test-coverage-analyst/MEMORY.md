@@ -1,0 +1,1 @@
+- [Coverage gaps hidden by green suite](coverage_gaps_are_hidden_by_green_suite.md) — always require()/run files directly in this repo; green `npm test` can mask 0%-covered, unparseable files.

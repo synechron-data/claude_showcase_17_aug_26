@@ -4,8 +4,9 @@ description: >
   Use this agent for test coverage reviews: locating untested functions/branches,
   identifying uncovered edge cases, and proposing concrete test cases. Invoke with:
   ask the test-coverage-analyst to review this file.
-tools: Read, Grep, Bash(npm test *), Bash(npx jest *)
+tools: Read, Grep, Bash(npm test *), Bash(npx jest *), Write, Edit
 model: sonnet
+memory: project
 ---
 
 # Test Coverage Analyst Agent

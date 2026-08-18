@@ -4,8 +4,9 @@ description: >
   Use this agent for performance reviews: N+1 query patterns, synchronous operations
   that should be async, missing database indexes, unbounded loops, and memory-intensive
   operations. Invoke with: ask the performance-analyst to review this file.
-tools: Read, Grep, Bash(npm ls *)
+tools: Read, Grep, Bash(npm ls *), Write, Edit
 model: sonnet
+memory: project
 ---
 
 # Performance Analyst Agent

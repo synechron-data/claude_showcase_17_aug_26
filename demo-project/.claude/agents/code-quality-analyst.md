@@ -4,8 +4,9 @@ description: >
   Use this agent for code quality reviews: CLAUDE.md standards violations,
   duplicated logic, inconsistent error handling, unclear naming, and dead code.
   Invoke with: ask the code-quality-analyst to review this file.
-tools: Read, Grep, Bash(npx eslint *)
+tools: Read, Grep, Bash(npx eslint *), Write, Edit
 model: sonnet
+memory: project
 ---
 
 # Code Quality Analyst Agent
