@@ -21,3 +21,16 @@ error — routes.js requires authService.js directly, so this crashes the whole 
 file under review (or run its test file if one exists) before concluding coverage is "just thin" —
 don't rely on `npm test` exit code or static reading alone. Per-file 0% coverage plus "all tests
 passed" is a red flag combination worth calling out as Critical, not just "no tests."
+
+**Confirmed still present as of 2026-08-18** (same commit range, `tests/` still only has `tests/utils/`,
+no `tests/auth/`): the `refreshToken()` missing-`async` SyntaxError is unchanged at line ~92. Two more
+planted bugs in `authService.js` surfaced on this pass, both invisible to static skim and both exactly
+the kind of thing a "test that should exist" would catch:
+- `loginUser()` line 32: `const isPasswordValid = bcrypt.compare(...)` — missing `await`. `isPasswordValid`
+  is a pending Promise object, always truthy, so `if (!isPasswordValid)` never rejects a wrong password.
+  Login accepts *any* password once a `userRecord` exists. Would only ever be caught by a test that
+  actually awaits `loginUser()` with a deliberately wrong password and asserts rejection.
+- `isTokenExpired()` line 68: `return decoded.exp > now;` — inverted. `exp > now` means the token is
+  still valid, but the function is documented/named to return `true` when expired. Every call site
+  (`refreshToken()`) inherits the inversion: valid tokens get treated as expired and expired tokens as
+  valid. Only a test with a real signed JWT of known future/past `exp` would catch this.

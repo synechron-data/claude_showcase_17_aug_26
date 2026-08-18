@@ -1,0 +1,1 @@
+- [Demo project planted bugs & token-type gotcha](demo-project-planted-bugs.md) — repo has intentional bugs; lint-past-parse-errors technique; refresh tokens are UUIDs not JWTs.

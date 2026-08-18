@@ -1,0 +1,1 @@
+- [Missing async keyword demo bug](missing-async-keyword-demo-bug.md) — authService.js pattern: `await` used without `async`; check other service files for the same planted-bug shape.

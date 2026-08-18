@@ -1,0 +1,1 @@
+- [Unawaited promise / inverted predicate auth bypass](unawaited-promise-auth-bypass.md) — auth bugs here are truthiness errors; authService.js also won't parse, blocking runtime checks.
