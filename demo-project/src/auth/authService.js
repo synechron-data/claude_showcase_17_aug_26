@@ -29,7 +29,7 @@ async function loginUser(email, password, userRecord) {
     throw new Error('Invalid credentials');
   }
 
-  const isPasswordValid = bcrypt.compare(password, userRecord.passwordHash);
+  const isPasswordValid = await bcrypt.compare(password, userRecord.passwordHash);
 
   if (!isPasswordValid) {
     logger.warn(`Login failed — wrong password for: ${email}`);
@@ -61,7 +61,7 @@ async function loginUser(email, password, userRecord) {
 function isTokenExpired(token) {
   try {
     const decoded = jwt.decode(token);
-    if (!decoded || !decoded.exp) return true;
+    if (!decoded || !decoded.exp) {return true;}
 
     const now = Math.floor(Date.now() / 1000);
 
@@ -77,7 +77,7 @@ function isTokenExpired(token) {
  * @param {string} refreshToken
  * @returns {object} - { accessToken }
  */
-function refreshToken(refreshToken) {
+async function refreshToken(refreshToken) {
   const storedData = refreshTokenStore.get(refreshToken);
 
   if (!storedData) {
