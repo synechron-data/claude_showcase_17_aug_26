@@ -1,0 +1,26 @@
+Based on what we worked through, here are the steps:                                                                                        
+                                                                                                                                              
+  1. Structure your plugin                                                                                                                      sync-plugin/
+  ├── .claude-plugin/                                                                                                                         
+  │   ├── plugin.json       # plugin manifest
+  │   └── marketplace.json  # marketplace manifest
+  ├── commands/             # slash commands (.md with frontmatter)
+  ├── agents/               # sub-agents (.md with frontmatter)
+  ├── skills/               # skills (SKILL.md with frontmatter)
+  └── hooks/
+      └── hooks.js          # hook definitions
+
+  2. Validate the plugin (if needed)
+  claude plugin validate path/to/sync-plugin/.claude-plugin/plugin.json
+
+  3. Validate the marketplace manifest  (if needed)
+  claude plugin validate path/to/sync-plugin
+
+  5. Register the folder as a local marketplace (project-scoped) - In another project
+  claude plugin marketplace add path/to/sync-plugin --scope project
+
+  6. Install the plugin (project-scoped)
+  claude plugin install sync-plugin --scope project or by using /plugins
+
+  7. claude
+        /plugins to check what is installed

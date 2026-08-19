@@ -1,0 +1,62 @@
+{
+    "name": "sync-plugin",
+    "version": "1.0.0",
+    "description": "Standard Claude Code setup for internal Synechron Team",
+    "author": {
+        "name": "Synechron AI Team"
+    },
+    "hooks": {
+        "PreToolUse": [
+            {
+                "matcher": "Bash",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "node sync-plugin/hooks/bash-guard.js"
+                    }
+                ]
+            }
+        ],
+        "PostToolUse": [
+            {
+                "matcher": "Write|Edit",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "node sync-plugin/hooks/eslint-fix.js"
+                    }
+                ]
+            }
+        ],
+        "Stop": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "node sync-plugin/hooks/session-log.js"
+                    }
+                ]
+            }
+        ],
+        "Notification": [
+            {
+                "matcher": "permission_prompt",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "node sync-plugin/hooks/slack-notify.js"
+                    }
+                ]
+            },
+            {
+                "matcher": "idle_prompt",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "node sync-plugin/hooks/slack-notify.js"
+                    }
+                ]
+            }
+        ]
+    }
+}

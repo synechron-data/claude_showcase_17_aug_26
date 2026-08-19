@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "sync-plugin-marketplace": {
+      "source": {
+        "source": "directory",
+        "path": "d:\\Github - Manish\\claude_showcase_17_aug_26\\demo-project\\sync-plugin"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "sync-plugin@sync-plugin-marketplace": true
+  }
+}
