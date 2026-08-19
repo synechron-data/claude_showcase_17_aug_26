@@ -20,7 +20,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-LOG_FILE = Path('.claude') / 'hooks-logs' / 'pretooluse-demo.log'
+LOG_FILE = Path('.claude') / 'hook-logs' / 'pretooluse-demo.log'
 
 
 def log_message(message):

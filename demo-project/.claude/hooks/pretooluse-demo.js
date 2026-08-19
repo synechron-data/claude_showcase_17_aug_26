@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const LOG_FILE = path.join('.claude', 'hooks-logs', 'pretooluse-demo.log');
+const LOG_FILE = path.join('.claude', 'hook-logs', 'pretooluse-demo.log');
 
 function logMessage(message) {
     fs.mkdirSync(path.dirname(LOG_FILE), { recursive: true });

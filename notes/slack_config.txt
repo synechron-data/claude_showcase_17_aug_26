@@ -1,0 +1,18 @@
+Step-by-step: Slack Incoming Webhook
+
+  1. Create a Slack App
+  - Go to https://api.slack.com/apps → Create New App → From scratch
+  - Name it Claude Code, select your workspace → Create App
+
+  2. Enable Incoming Webhooks
+  - Left sidebar → Incoming Webhooks → toggle ON
+  - Click Add New Webhook to Workspace
+  - Pick a channel (e.g. #general or create #claude-notifications) → Allow
+  - Copy the Webhook URL — looks like:
+  https://hooks.slack.com/services/T.../B.../XXXX
+
+  3. Add the URL to Claude Code's env
+  - Open .claude/settings.json and add it under "env":
+  "env": {
+    "SLACK_WEBHOOK_URL": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+  }
