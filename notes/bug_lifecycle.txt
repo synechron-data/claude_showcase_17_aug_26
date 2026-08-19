@@ -1,0 +1,16 @@
+1. /security-review authservice
+2. /create-issue for Critical Vuln 1
+3. /fix-issue #1
+4. /commit for fix#1
+5. /raise-pr
+
+6. Create an agent team to review PR #2.
+
+Spawn three reviewers:
+- Reviewer 1: focused exclusively on security implications
+- Reviewer 2: focused on performance and scalability
+- Reviewer 3: validating test coverage and edge cases
+
+Have them each review independently, then synthesize findings into a single report.
+
+7. Merge and close the PR with comment

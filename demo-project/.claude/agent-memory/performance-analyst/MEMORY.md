@@ -1,2 +1,3 @@
 - [Missing async keyword demo bug](missing-async-keyword-demo-bug.md) — authService.js pattern: `await` used without `async`; check other service files for the same planted-bug shape.
 - [Unbounded refresh token store](unbounded-refresh-token-store.md) — authService.js refreshTokenStore Map has no TTL sweep/size cap; flag as High perf debt, not just a demo simplification.
+- [bcryptjs pure-JS CPU cost](bcryptjs-pure-js-cpu-cost.md) — bcrypt.compare/hash run on main thread (no native bindings); pre-existing cost, don't flag `await` fixes as new perf regressions.

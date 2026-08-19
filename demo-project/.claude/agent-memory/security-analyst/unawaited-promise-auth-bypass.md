@@ -42,11 +42,13 @@ context, and there is no test coverage on this module (see below), so nothing fl
 rather than the function body. Also verify every declared token-lifetime constant is actually
 consumed somewhere.
 
-**Runtime verification caveat:** `src/auth/authService.js` currently has `await` inside the
-non-async `function refreshToken()` (~line 92), which is a parse-time SyntaxError. The module
-cannot be `require()`d, so dynamic testing, `npm test`, and coverage all fail on it. To
-reproduce findings at runtime, copy the file to the scratchpad and add the missing `async`
-first — do not conclude the code is unreachable or unused just because it will not load.
+**Status as of 2026-08-19 (branch `fix/issue-1`, PR #2):** the missing `await` on
+`bcrypt.compare` is fixed and `refreshToken()` is now `async`, so the parse-time SyntaxError
+is gone and the module loads/tests run. **Still open on that branch:** the inverted
+`decoded.exp > now` in `isTokenExpired()`, the UUID-vs-JWT type confusion on the refresh
+path, and the unused `REFRESH_EXPIRES_IN`. Partial fixes to this cluster are the norm here —
+when reviewing an auth fix, re-check the *other* items in this note rather than assuming the
+whole cluster moved together.
 
 Note: root `CLAUDE.md` says planted bugs are intentional for a demo. Still report them as
 findings; the demo framing is not a reason to downgrade severity.

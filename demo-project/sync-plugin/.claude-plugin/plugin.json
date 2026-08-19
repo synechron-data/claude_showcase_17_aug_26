@@ -1,5 +1,5 @@
 {
-    "name": "sync-plugin",
+    "name": "${CLAUDE_PLUGIN_ROOT}",
     "version": "1.0.0",
     "description": "Standard Claude Code setup for internal Synechron Team",
     "author": {
@@ -12,7 +12,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "node sync-plugin/hooks/bash-guard.js"
+                        "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/bash-guard.js"
                     }
                 ]
             }
@@ -23,7 +23,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "node sync-plugin/hooks/eslint-fix.js"
+                        "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/eslint-fix.js"
                     }
                 ]
             }
@@ -33,7 +33,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "node sync-plugin/hooks/session-log.js"
+                        "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/session-log.js"
                     }
                 ]
             }
@@ -44,7 +44,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "node sync-plugin/hooks/slack-notify.js"
+                        "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/slack-notify.js"
                     }
                 ]
             },
@@ -53,7 +53,7 @@
                 "hooks": [
                     {
                         "type": "command",
-                        "command": "node sync-plugin/hooks/slack-notify.js"
+                        "command": "node ${CLAUDE_PLUGIN_ROOT}/hooks/slack-notify.js"
                     }
                 ]
             }

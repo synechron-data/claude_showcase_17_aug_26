@@ -1,6 +1,7 @@
 {
     "env": {
-        "SLACK_WEBHOOK_URL": "PASTE YOUR INCOMING WEBHOOK URL FROM SLACK APP"
+        "SLACK_WEBHOOK_URL": "PASTE YOUR INCOMING WEBHOOK URL FROM SLACK APP",
+        "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
     },
     "model": "opusplan",
     "permissions": {
